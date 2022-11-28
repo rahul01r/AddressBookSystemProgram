@@ -8,7 +8,6 @@ namespace AddressBook
 {
     public class Contact
     {
-
         public string firstName;
         public string lastName;
         public string address;
@@ -17,6 +16,5 @@ namespace AddressBook
         public string state;
         public int zipcode;
         public string email;
-
     }
 }
