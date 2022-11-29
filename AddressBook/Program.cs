@@ -14,9 +14,30 @@
             DisplayDictionary(addressBookSystem);
             //SearchByCityOrState();
             FilterByCityAndState();
+            ShowCountofContactsbyCityandState();
             //DisplayContacts();
             //EditContacts();
             //DeleteContacts();            
+        }
+        public static void ShowCountofContactsbyCityandState()
+        {
+            Console.WriteLine("Enter city name to show counts in that city");
+            string icity = Console.ReadLine();
+
+            if (cityDict.ContainsKey(icity))
+                Console.WriteLine("number of contacts in city {0} are {1}", icity, cityDict[icity].Count);
+            else
+                Console.WriteLine("number of contacts in city {0} are zero", icity);
+
+
+            Console.WriteLine("Enter state name to show counts in that state");
+            icity = Console.ReadLine();
+
+            if (stateDict.ContainsKey(icity))
+                Console.WriteLine("number of contacts in state {0} are {1}", icity, stateDict[icity].Count);
+            else
+                Console.WriteLine("number of contacts in state {0} are zero", icity);
+
         }
         public static void FilterByCityAndState()
         {
