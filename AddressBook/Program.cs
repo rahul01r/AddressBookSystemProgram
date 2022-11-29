@@ -9,9 +9,35 @@
 
             CreateAddresBook();
             DisplayDictionary();
+            SearchByCityOrState();
             //DisplayContacts();
             //EditContacts();
             //DeleteContacts();            
+        }
+
+        public static void SearchByCityOrState()
+        {
+
+            Console.WriteLine("Do you want to search city or state for contact then press 1 or press 2 for exit ");
+            int num = Convert.ToInt32(Console.ReadLine());
+            while (num == 1)
+            {
+                List<Contact> tempcontacts = new List<Contact>();
+                Console.WriteLine("Enter the city or state to search :");
+                string iCity = Console.ReadLine();
+                foreach (var kv in addressBookSystem)
+                {
+                    var list = kv.Value.Where(x => x.city.Equals(iCity)).ToList();
+                    tempcontacts.AddRange(list);
+                }
+                Console.WriteLine("Here are found persons : ");
+                foreach (Contact contact in tempcontacts)
+                {
+                    Console.WriteLine(contact.firstName);
+                }
+                Console.WriteLine("Do you want to search city or state for contact then press 1 or press 2 for exit ");
+                num = Convert.ToInt32(Console.ReadLine());
+            }
         }
         public static bool FillingDetails(Contact contact, List<Contact> contacts)
         {
@@ -187,6 +213,8 @@
         {
             Console.WriteLine("Do you want to create new AddressBook press 1 for yes or 2 for no:");
             int num = Convert.ToInt32(Console.ReadLine());
+
+
             while (num == 1)
             {
                 Console.WriteLine("Please enter a name of addressbook:");
