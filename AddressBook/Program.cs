@@ -5,19 +5,48 @@
         public static Dictionary<string, List<Contact>> addressBookSystem = new Dictionary<string, List<Contact>>();
         public static Dictionary<String, List<Contact>> cityDict = new Dictionary<string, List<Contact>>();
         public static Dictionary<String, List<Contact>> stateDict = new Dictionary<string, List<Contact>>();
-
         public static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Address Book Sytem.");
 
             CreateAddresBook();
             DisplayDictionary(addressBookSystem);
-            //SearchByCityOrState();
-            FilterByCityAndState();
-            ShowCountofContactsbyCityandState();
+            // SearchByCityOrState();
+            //FilterByCityAndState();
+            // ShowCountofContactsbyCityandState();
+            SortByName();
             //DisplayContacts();
             //EditContacts();
             //DeleteContacts();            
+        }
+        public static void SortByName()
+        {
+            Console.WriteLine("Do you want to sort contact using firstname then press 1 or press 2 for exit ");
+            int num = Convert.ToInt32(Console.ReadLine());
+
+            List<Contact> sort = new List<Contact>();
+            foreach (var kv in addressBookSystem)
+            {
+                var list = kv.Value.OrderBy(x => x.firstName).ToList();
+                sort.AddRange(list);
+            }
+            DisplayContactsByName(sort);
+
+            Console.WriteLine("===============================");
+        }
+        public static void DisplayContactsByName(List<Contact> sort)
+        {
+            //print contacts
+
+
+            Console.WriteLine("Current contacts in adress book:");
+
+            foreach (Contact contact in sort)
+            {
+                Console.WriteLine(contact.firstName);
+            }
+            Console.WriteLine("=============================================================");
+
         }
         public static void ShowCountofContactsbyCityandState()
         {
@@ -192,7 +221,7 @@
         {
             //print contacts
 
-            Console.WriteLine("=============================================================");
+
             Console.WriteLine("Current contacts in adress book:");
 
             foreach (Contact contact in contacts)
@@ -301,15 +330,14 @@
                 addressBookSystem.Add(name, addressBook);
 
                 CreatingContacts(addressBook);
-                /*
                 if (addressBook.Count > 0)
                 {
                     EditContacts(addressBook);
                     DeleteContacts(addressBook);
                 }
-                
+
                 DisplayDictionary(addressBookSystem);
-                */
+
                 Console.WriteLine("Do you want to create another addressbook press 1 or press 2 for exit:");
                 num = Convert.ToInt32(Console.ReadLine());
             }
